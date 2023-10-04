@@ -1,5 +1,5 @@
 provider "google" {
-  project     = "glassy-imprint-401017"
+  project     = "YOUR_PROJECT_ID"
   region      = "us-east4"
 }
 resource "google_compute_network" "vpc_network" {
