@@ -1,0 +1,14 @@
+- name: set up the hosts file
+  hosts: server
+  gather_facts: True
+  become: yes
+  tasks:
+    - name: Install packages
+      apt: 
+        name: "{{ packages }}"
+        update_cache: yes
+      vars:
+        packages:
+          - wget
+          - iperf
+          - iperf3
