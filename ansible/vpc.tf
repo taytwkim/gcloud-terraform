@@ -1,17 +1,17 @@
 variable "ssh_key" {
-  default = "/home/ic49/.ssh/id_rsa.pub"
+  default = "<YOUR HOME DIR>/.ssh/id_rsa.pub"
 }
 
 variable "ssh_private_key" {
-  default = "/home/ic49/.ssh/id_rsa"
+  default = "<YOUR HOME DIR>/.ssh/id_rsa"
 }
 
 variable "ssh_user" {
-  default = "ic49"
+  default = "<YOUR ID on VM>"
 }
 provider "google" {
-  credentials = file("/home/ic49/key.json")
-  project    = "glassy-imprint-401017"
+  credentials = file("key.json")
+  project    = "<YOUR GCP PROJECT NAME>"
   region     = "us-east4"
 }
 
@@ -60,13 +60,13 @@ output "instance_fip" {
 # create an inventory file for Ansible #
 ########################################
 resource "local_file" "inventory" {
-  content = templatefile("/home/ic49/ansible/clusterinventory.tpl",
+  content = templatefile("clusterinventory.tpl",
     {
       ansible_sshkey    = var.ssh_private_key
       ansible_user      = var.ssh_user
       server_private_ip = google_compute_instance.example.network_interface[0].network_ip
       server_public_ip  = google_compute_instance.example.network_interface[0].access_config[0].nat_ip
   })
-  filename        = "/home/ic49/ansible/cluster.inventory"
+  filename        = "cluster.inventory"
   file_permission = "0666"
 }
