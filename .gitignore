@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+
+# Editor junk (optional)
+.vscode/
+.idea/
+
+# --- Terraform ---
+# Local plugin/cache dir (never commit)
+.terraform/
+
+# State files (can contain secrets)
+*.tfstate
+*.tfstate.backup
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Plans (binary/ephemeral)
+*.tfplan
+*.plan
+
+# Local var files (often hold secrets)
+terraform.tfvars
+*.auto.tfvars
+*.tfvars.json
+
+# Override files (local-only tweaks)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Project-specific sensitive files
+key.json          # GCP service account key (if you used one)
+*.pem
+*.key
+*.p12
+id_rsa
+id_rsa.pub       # (public keys are usually fine, but safest to ignore)

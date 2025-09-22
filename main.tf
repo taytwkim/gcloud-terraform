@@ -1,6 +1,6 @@
 provider "google" {
-  project     = "YOUR_PROJECT_ID"
-  region      = "us-east4"
+  project = "YOUR_PROJECT_ID"
+  region  = "us-east4"
 }
 resource "google_compute_network" "vpc_network" {
   name                    = "my-custom-mode-network"
@@ -18,7 +18,7 @@ resource "google_compute_subnetwork" "default" {
 # Create a single Compute Engine instance
 resource "google_compute_instance" "default" {
   name         = "flask-vm"
-  machine_type = "f1-micro"
+  machine_type = "e2-micro"
   zone         = "us-east4-a"
   tags         = ["ssh"]
 
@@ -66,5 +66,5 @@ resource "google_compute_firewall" "flask" {
 
 // A variable for extracting the external IP address of the VM
 output "Web-server-URL" {
- value = join("",["http://",google_compute_instance.default.network_interface.0.access_config.0.nat_ip,":5000"])
+  value = join("", ["http://", google_compute_instance.default.network_interface.0.access_config.0.nat_ip, ":5000"])
 }
